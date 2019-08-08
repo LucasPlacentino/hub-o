@@ -19,7 +19,7 @@ var Shuffle = window.shuffle;
 var shuffle = new Shuffle(document.querySelector('.tile-container'), {
   group: shuffle.ALL_ITEMS,
   itemSelector: '.tile',
-  gutterWidth: 16,
+  gutterWidth: 32,
   columnWidth: 188,
   buffer: 1,
   delimeter: ",",
@@ -175,7 +175,7 @@ var renderImgTile = function(tile) {
         bgColor = "rgba(255,255,255,.8)";
     }
     bgColor = Color(bgColor);
-    bgColor.setAlpha(0.8);
+    // bgColor.setAlpha(0.8);
     tile.style.backgroundColor = bgColor;
 
     var img = new Image();
@@ -193,7 +193,7 @@ var renderPlainTile = function(tile) {
         bgColor = "rgba(255,255,255,.8)";
     }
     bgColor = Color(bgColor);
-    bgColor.setAlpha(0.8);
+    // bgColor.setAlpha(0.8);
     tile.style.backgroundColor = bgColor;
 
     var txtColor = tile.getAttribute("data-txt-color");
@@ -213,7 +213,7 @@ var renderPlainTile = function(tile) {
 
     var domainDiv = document.createElement("div");
     domainDiv.style.fontSize = textInfo.size;
-    domainDiv.style.position = "absolute";
+    domainDiv.classList.add("tile-text");
     tile.appendChild(domainDiv);
 
     var beforeDiv = document.createElement("div");
@@ -297,5 +297,13 @@ var rotateBackground = function(count) {
         }
     }
 };
-preloadBackgrounds();
-rotateBackground();
+// preloadBackgrounds();
+// rotateBackground();
+
+
+// filter on page load
+window.onload = function () {
+  if(window.location.hash) {
+   shuffle.filter(location.hash.slice(1));
+  }
+}
