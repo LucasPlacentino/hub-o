@@ -6,7 +6,7 @@ Hub-o is a single-page hub-like theme for [Hugo](http://gohugo.io/). Supports us
 
 ## Examples
 
-You can visit a live demo at https://LucasPlacentino.github.io/hub-o-demo/.
+You can visit a live demo at https://hub-o.obsilab.com/
 
 ## Features
  - Rotating image background
