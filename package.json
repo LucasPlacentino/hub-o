@@ -1,12 +1,12 @@
 {
-  "name": "slate",
+  "name": "hub-o",
   "version": "1.0.0",
-  "description": "A speed-dial like site",
+  "description": "Hub site",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Gus Esquivel",
+  "author": "Lucas Placentino",
   "license": "MIT",
   "devDependencies": {
     "cssnano": "^4.1.10",
