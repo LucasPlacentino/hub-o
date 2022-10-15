@@ -2,7 +2,7 @@
 <head>
     <title>{{ .Title }}</title>{{ if .Site.Params.Favicon }}
     <link rel="shortcut icon" href="{{ .Site.Params.Favicon }}">{{ end }}
-    <link rel="stylesheet" href="css/slate.css">
+    <link rel="stylesheet" href="css/hub-o.css">
 </head>
 
 <body{{ if .Site.Params.BackgroundStyle }} style='background: {{ .Site.Params.BackgroundStyle | safeCSS }};'{{ end }}
@@ -14,5 +14,5 @@
 </div>
 
 </body>
-<script src="js/slate.js"></script>
+<script src="js/hub-o.js"></script>
 </html>

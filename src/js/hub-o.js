@@ -1,4 +1,4 @@
-
+// Hub-o JS
 
 
 String.prototype.hashCode = function(){

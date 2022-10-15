@@ -39,7 +39,7 @@ gulp.task('build', function(callback) {
 
 gulp.task('pack-js', function (done) {
     return gulp.src([jsVnd + '/**/*.js', jsSrc + '/**/*.js'])
-        .pipe(concat('slate.js'))
+        .pipe(concat('hub-o.js'))
         .pipe(util.env.debug ? util.noop() : uglify())
         .pipe(gulp.dest(jsDst));
         done();
@@ -53,7 +53,7 @@ gulp.task('pack-css', function (done) {
         .pipe(sass({
           errLogToConsole: true
         }))
-        .pipe(concat('slate.css'))
+        .pipe(concat('hub-o.css'))
         .pipe(postcss(postCSSconfig))
    .pipe(gulp.dest(scssDst));
    done();
