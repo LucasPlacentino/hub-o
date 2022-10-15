@@ -3,11 +3,7 @@ name = "Hub-o"
 license = "MIT"
 licenselink = "https://github.com/LucasPlacentino/hub-o/blob/main/LICENSE.md"
 description = "Hub theme"
-<<<<<<< Updated upstream
 homepage = "https://github.com/LucasPlacentino/hub-o"
-=======
-homepage = "http://github.com/LucasPlacentino/hub-o"
->>>>>>> Stashed changes
 demosite="https://LucasPlacentino.github.io/hub-o-demo/"
 tags = ["hub", "single-page"]
 features = []
