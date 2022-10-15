@@ -3,9 +3,9 @@
 # to pollute your global system.
 
 OS := $(shell uname | tr '[:upper:]' '[:lower:]')
-SITE_NAME="slate"
+SITE_NAME="hub-o"
 
-NODE_VERSION=v7.9.0
+NODE_VERSION=v16.18.0
 NODE_PLATFORM=${OS}-x64
 
 YARN_VERSION=0.23.2
