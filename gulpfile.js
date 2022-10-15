@@ -8,15 +8,18 @@ var jshint = require('gulp-jshint');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
-var autoprefixer = require('gulp-autoprefixer');
 var runSequence = require('run-sequence');
 var sass = require('gulp-sass');
-var cleanCss = require('gulp-clean-css');
 var hash = require('gulp-hash');
-var webserver = require('gulp-webserver');
 var del = require('del');
 var util = require('gulp-util');
+var postcss = require('gulp-postcss');
+var postcssPresetEnv = require('postcss-preset-env');
 
+var postCSSconfig = [
+  postcssPresetEnv({}),
+  require('cssnano')
+];
 
 var src = './src',
     vnd = './vendor',
@@ -29,32 +32,31 @@ var src = './src',
     jsDst = dst + '/js',
     fontDst = dst + '/fonts';
 
-// define the default task and add the watch task to it
-gulp.task('default', ['build']);
 
 gulp.task('build', function(callback) {
-    runSequence('vendor', 'pack-css', 'pack-js');
+    gulp.series('vendor', 'pack-css', 'pack-js');
 });
 
-gulp.task('pack-js', function () {
+gulp.task('pack-js', function (done) {
     return gulp.src([jsVnd + '/**/*.js', jsSrc + '/**/*.js'])
         .pipe(concat('slate.js'))
         .pipe(util.env.debug ? util.noop() : uglify())
         .pipe(gulp.dest(jsDst));
+        done();
 });
 
-gulp.task('pack-css', function () {
+gulp.task('pack-css', function (done) {
     return gulp.src([scssVnd + '/**/*.css',
                      scssVnd + '/**/*.scss',
                      scssSrc + '/**/*.css',
                      scssSrc + '/**/*.scss'])
         .pipe(sass({
-          outputStyle: 'compressed',
           errLogToConsole: true
         }))
         .pipe(concat('slate.css'))
-        .pipe(cleanCss())
+        .pipe(postcss(postCSSconfig))
    .pipe(gulp.dest(scssDst));
+   done();
 });
 
 gulp.task('vendor', function () {
@@ -73,18 +75,17 @@ gulp.task('vendor', function () {
 });
 
 // configure which files to watch and what tasks to use on file changes
-gulp.task('watch', function() {
-    runSequence('pack-css', 'pack-js');
-    gulp.watch(scssSrc + '/**/*css', ['pack-css']);
-    gulp.watch(jsSrc + '/**/*.js', ['pack-js']);
+
+gulp.task('watch:css', function() {
+  return gulp.watch(['src/**/*css'],
+  gulp.parallel('pack-css'));
 });
 
-gulp.task('serve', ['watch'], function() {
-    gulp.src(dst)
-        .pipe(webserver({
-            livereload: true,
-            directoryListing: false,
-            open: true,
-            fallback: 'index.html'
-        }));
+gulp.task('watch:js', function() {
+  return gulp.watch(['src/**/*.js'],
+  gulp.parallel('pack-js'));
 });
+
+gulp.task('watch', gulp.parallel('watch:js', 'watch:css'));
+
+gulp.task('default', gulp.series('build'));

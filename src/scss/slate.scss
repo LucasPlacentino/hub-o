@@ -2,32 +2,43 @@
 
 $tile-width: 188px;
 $tile-height: 120px;
-$tile-spacing: 16px;
-$title-height: 16px;
+$tile-spacing: 32px;
 $transition-time: .3s;
 
-$menu-bar-width: 50px;
+$menu-bar-width: 0;
 
-$background: #657383;
-$text-color: #000;
-$text-title-color: #fff;
+$background-dark: #323639;
+$background-light: #fff;
 
+$text-color-dark: #CFCFD1;
+$text-color-light: #222;
+
+$text-title-color-dark: $text-color-dark;
+$text-title-color-light: $text-color-light;
+
+$nav-color-dark: $text-color-dark;
+$nav-color-light: $text-color-light;
 
 body {
     user-select: none;
     margin: 0;
     padding: 0;
-    font-family: 'Exo', sans-serif;
+    font-family: system-ui;
     font-weight: bold;
-    background-color: $background;
-    margin-left: 50px;
-    color: $text-color;
-    background-image: radial-gradient(ellipse farthest-side at center top, #FCFCFC 0%, #657383 100%);
+    background-color: $background-light;
+    margin-left: $menu-bar-width;
+    background-image: radial-gradient(ellipse farthest-side at center top, rgba($background-dark, 0.1) 0%, rgba($background-dark, 0.2) 100%);
+    color: $text-color-light;
+
+    @media (prefers-color-scheme: dark) {
+      background-color: $background-dark;
+      color: $text-color-dark;
+    }
 }
 
 .container {
     box-sizing: border-box;
-    min-height: 10px;
+    min-height: 100vh;
     padding: 48px 0;
     position: relative;
     text-align: center;
@@ -62,7 +73,7 @@ body {
 .tile {
     width: $tile-width;
     max-width: $tile-width;
-    padding: 8px;
+    padding: ($tile-spacing /2);
     -webkit-flex: 0 0 188px;
 	flex: 0 0 188px;
     transition: top 0.3s, left 0.3s, opacity 0.3s;
@@ -73,19 +84,37 @@ body {
     max-height: $tile-height;
     width: $tile-width;
     max-width: $tile-width;
-    border-radius: 2px;
-    box-shadow: 0 0 0 1px hsla(0, 0%, 0%, 0.1), 0 2px 8px hsla(0, 0%, 0%, 0.2);
+    border-radius: 6px;
+    box-shadow: 0px 0px 0px 4px rgba(0,0,0,0.1);
     box-sizing: border-box;
     background: rgba(255,255,255,.8);
     font-size: 28px;
     vertical-align: middle;
     text-align: center;
     display: table-cell;
+
+    .tile-link:focus & {
+      box-shadow: 0px 0px 0px 4px $text-color-light;
+
+      @media (prefers-color-scheme: dark) {
+        box-shadow: 0px 0px 0px 4px $text-color-dark;
+      }
+    }
+}
+
+.tile-text {
+  display: inline-block;
+  line-height: 1;
 }
 
 .tile-link {
-    color: $text-color;
+    color: $text-color-light;
     text-decoration: none;
+    outline: none;
+
+    @media (prefers-color-scheme: dark) {
+      color: $text-color-dark;
+    }
 }
 
 .tile-title {
@@ -93,9 +122,9 @@ body {
     width: $tile-width;
     background-color: transparent;
     box-sizing: border-box;
-    color: $text-title-color;
+    color: $text-title-color-light;
     display: block;
-    height: 32px;
+    height: calc(3ex + 16px);
     line-height: 16px;
     overflow: hidden;
     padding: 8px;
@@ -103,6 +132,10 @@ body {
     text-overflow: ellipsis;
     transition: color 0.3s;
     white-space: nowrap;
+
+    @media (prefers-color-scheme: dark) {
+      color: $text-title-color-dark;
+    }
 }
 
 .logo {
@@ -125,7 +158,8 @@ body {
     /*transition: background-image 3s;*/
 	transition: all 0.8s ease-in-out;
     transition-delay: 1s;
-    width: 50px;
+    width: $menu-bar-width;
+    overflow: hidden;
 }
 
 .nav-panel:hover {
@@ -139,7 +173,7 @@ nav {
     display: block;
     height: 100%;
     padding: 7px 4px 4px;
-    width: 50px;
+    width: $menu-bar-width;
     -webkit-user-select: none;
     color: #fff;
 
@@ -167,8 +201,12 @@ nav {
         text-align: center;
 
         a {
-            color: #FFF;
+            color: $nav-color-light;
             text-decoration: none;
+
+            @media (prefers-color-scheme: dark) {
+              color: $nav-color-dark;
+            }
         }
     }
 }
@@ -193,7 +231,6 @@ nav {
 
 .pre-domain, .post-domain {
     font-size: 10px;
-    position: absolute;
     text-shadow:
        -1px 0 rgba(255,255,255,.8),
         0 1px rgba(255,255,255,.8),
@@ -202,13 +239,19 @@ nav {
 }
 
 .pre-domain {
-    top: 5px;
-    left: 0px;
+    text-align: left;
+
+    &:not(:empty)::after {
+      content: '.';
+    }
 }
 
 .post-domain {
-    top: 40px;
-    right: 0px;
+    text-align: right;
+
+    &:not(:empty)::before {
+      content: '.';
+    }
 }
 
 // ===========================================================================
