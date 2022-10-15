@@ -1,17 +1,16 @@
-# slate theme for hugo
+# Hub-o theme for Hugo, a fork of [slate](https://github.com/gesquive/slate).
 
 
-slate is a single-page speed dial theme for [Hugo](http://gohugo.io/). Supports using image logos or url text for the contents of the tiles.
+Hub-o is a single-page hub-like theme for [Hugo](http://gohugo.io/). Supports using image logos or url text for the contents of the tiles.
 
 
 ## Examples
 
-You can visit a live demo at https://gesquive.github.io/hugo-slate-demo/ or view
-screen shots of the [Image](https://raw.githubusercontent.com/gesquive/slate/master/images/icon_tiles.png) and [Text](https://raw.githubusercontent.com/gesquive/slate/master/images/text_tiles.png) tile display modes.
+You can visit a live demo at https://LucasPlacentino.github.io/hub-o-demo/.
 
 ## Features
  - Rotating image background
- - [Image](https://raw.githubusercontent.com/gesquive/slate/master/images/icon_tiles.png) and [Text](https://raw.githubusercontent.com/gesquive/slate/master/images/text_tiles.png) tile display mode
+ - Image and Text tile display mode
  - Tag based navigation/filtering
 
 
@@ -21,11 +20,11 @@ screen shots of the [Image](https://raw.githubusercontent.com/gesquive/slate/mas
 
     mkdir themes
     cd themes
-    git clone https://github.com/gesquive/slate
+    git clone https://github.com/LucasPlacentino/hub-o
 
 ### Build with this theme
 
-    hugo server -t slate
+    hugo server -t hub-o
 
 ## Configuration
 
@@ -41,16 +40,13 @@ The following configuration site params are available:
 ``` toml
 baseURL = "http://example.org/"
 languageCode = "en-us"
-title = "My New Hugo Site"
-theme = "slate"
+title = "My New Hugo Site with Hub-o"
+theme = "hub-o"
 
 [ params ]
 BackgroundImages = [
   "bg/b1920-000.jpg",
-  "bg/b1920-001.jpg",
-  "bg/b1920-002.jpg",
-  "bg/b1920-003.jpg",
-  "bg/b1920-004.jpg"
+  "bg/b1920-001.jpg"
 ]
 BackgroundStyle = "#000000;"
 OpenLinksInNewWindow = true
@@ -64,7 +60,7 @@ icon = "star"
 
 ```
 
-Example : [config.toml](https://github.com/gesquive/hugo-slate-demo/blob/master/config.toml)
+Example : [config.toml](https://github.com/LucasPlacentino/hub-o-demo/blob/main/config.toml)
 
 ### Links
 
