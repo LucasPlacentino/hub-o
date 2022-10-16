@@ -10,7 +10,7 @@
 <body{{ if .Site.Params.BackgroundStyle }} style='background: {{ .Site.Params.BackgroundStyle | safeCSS }};'{{ end }}
 {{- if .Site.Params.BackgroundImages }} data-backgrounds='{{ range .Site.Params.BackgroundImages }}{{ . }},{{ end }}'{{- end }}>
 
-{{ partial "nav.html" . }}
+{{ if .Site.Params.sideNavBar | default true }}{{ partial "nav.html" . }}{{ end }}
 
 <div class="container">{{ partial "tile_slate.html" . }}
 </div>
