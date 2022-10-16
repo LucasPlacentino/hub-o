@@ -8,7 +8,6 @@ publishDir = "docs"
 [ params ]
 Favicon = "favicon.ico"
 OpenLinksInNewWindow = true
-side_menu_bar = true
 
 [[ params.nav ]]
 name = "favorites"

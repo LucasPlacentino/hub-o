@@ -1,11 +1,8 @@
 <html>
 <head>
-    {{ $sassTemplate := resources.Get "scss/hub-o.scss"}}
-    {{ $style := $sassTemplate | resources.ExecuteAsTemplate "main.scss" . | resources.ToCSS }}
-    <link rel="stylesheet" href="{{ $style.Permalink }}">
-    <!--
+    
     <link rel="stylesheet" href="css/hub-o.css">
-    -->
+    
     <title>hub-o</title>
 </head>
 

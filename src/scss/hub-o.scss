@@ -5,14 +5,7 @@ $tile-height: 120px;
 $tile-spacing: 32px;
 $transition-time: .3s;
 
-//$menu-bar-width: 0;
-$menu-bar-width: null;
-$menu-bar-enabled: {{ .Site.Params.side_menu_bar | default true }};
-@if $menu-bar-enabled {
-    $menu-bar-width: 50px;
-} @else {
-    $side-menu-bar-width: 0;
-}
+$menu-bar-width: 0;
 
 $background-dark: #323639;
 $background-light: #fff;
