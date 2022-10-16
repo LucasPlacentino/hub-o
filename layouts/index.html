@@ -2,7 +2,11 @@
 <head>
     <title>{{ .Title }}</title>{{ if .Site.Params.Favicon }}
     <link rel="shortcut icon" href="{{ .Site.Params.Favicon }}">{{ end }}
+    {{ $style := resources.Get "css/hub-o.css" | resources.ExecuteAsTemplate "css/hub-o.css" . }}
+    <link rel="stylesheet" href="{{ $style.Permalink }}">
+    <!--
     <link rel="stylesheet" href="css/hub-o.css">
+    -->
 </head>
 
 <body{{ if .Site.Params.BackgroundStyle }} style='background: {{ .Site.Params.BackgroundStyle | safeCSS }};'{{ end }}

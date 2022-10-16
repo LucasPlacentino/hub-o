@@ -1,7 +1,11 @@
 <html>
 <head>
-<link rel="stylesheet" href="css/hub-o.css">
-<title>hub-o</title>
+    {{ $style := resources.Get "css/hub-o.css" | resources.ExecuteAsTemplate "css/hub-o.css" . }}
+    <link rel="stylesheet" href="{{ $style.Permalink }}">
+    <!--
+    <link rel="stylesheet" href="css/hub-o.css">
+    -->
+    <title>hub-o</title>
 </head>
 
 <body>
