@@ -34,6 +34,7 @@ The following configuration site params are available:
 - **BackgroundStyle**: (_optional_) The [background CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/background) style to use. (default value is `radial-gradient(ellipse farthest-side at center top, #FCFCFC 0%, #657383 100%)`)
 - **OpenLinksInNewWindow**: (_optional_) boolean to set if tile links open in a new window/tab. (default values is `false`)
 - **Favicon**: (_optional_) path to the favicon
+- **sideNavBar**: (_optional_) boolean to set if the side nav bar for different categories is shown. (default value is `true`)
 
 **config.toml**
 
@@ -51,8 +52,9 @@ BackgroundImages = [
 BackgroundStyle = "#000000;"
 OpenLinksInNewWindow = true
 Favicon = "favicon.ico"
+sideNavBar = false
 
-# list of nav tags
+# list of nav tags - if sideNavBar is enabled
 [[ params.nav ]]
 name = "favorites"
 tag = "favorite"
@@ -129,13 +131,15 @@ tiles:
 
 Along the left side of the screen is a navigation bar that can be used to filter the links. The filtering occurs on the tag attribute of the links. For example, when the 'favorite' tag is selected, only the links with the 'favorite' tag attribute will be shown.
 
+You can activate or deactivate the side navigation bar by changing the boolean value of `sideNavBar` in the `config.toml` file.
+
 A nav filter is defined as:
 
 - **name**: The name displayed in the UI
 - **tag**: the tag name to filter links with
 - **icon**: the [font-awesome](http://fontawesome.io/icons/) name of the icon to display
 
-Example of a menu definition in main config file.
+Example of a menu definition in main config file (`config.toml`).
 
 
 ``` toml
